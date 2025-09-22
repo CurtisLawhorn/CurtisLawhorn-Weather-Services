@@ -37,11 +37,11 @@ resource "aws_apprunner_service" "my_apprunner" {
       image_configuration {
         port = "8080"
         runtime_environment_variables = {
-          ASPNETCORE_ENVIRONMENT                          = "Production"
-          AWS__CognitoConfiguration__UserPoolId           = var.app_runner_cognito_userpoolid
-          AWS__ApiDataStreamingConfiguration__StreamName  = var.app_runner_datastream_name
-          Logging__LogLevel__Default                      = "Information"
-          "Logging__LogLevel__Microsoft.AspNetCore"       = "Warning"
+          ASPNETCORE_ENVIRONMENT                         = "Production"
+          AWS__CognitoConfiguration__UserPoolId          = var.app_runner_cognito_userpoolid
+          AWS__ApiDataStreamingConfiguration__StreamName = var.app_runner_datastream_name
+          Logging__LogLevel__Default                     = "Information"
+          "Logging__LogLevel__Microsoft.AspNetCore"      = "Warning"
         }
         runtime_environment_secrets = {}
       }
@@ -67,7 +67,7 @@ resource "aws_apprunner_service" "my_apprunner" {
   auto_scaling_configuration_arn = "arn:aws:apprunner:us-east-2:689502032294:autoscalingconfiguration/DefaultConfiguration/1/00000000000000000000000000000001"
   network_configuration {
     egress_configuration {
-      egress_type       = "DEFAULT"
+      egress_type = "DEFAULT"
     }
     ingress_configuration {
       is_publicly_accessible = false
@@ -124,7 +124,7 @@ resource "aws_api_gateway_method_response" "my_api_method_response" {
 resource "aws_api_gateway_deployment" "my_api_deployment" { # Deploy the API
   depends_on  = [aws_api_gateway_integration.my_api_integration]
   rest_api_id = aws_api_gateway_rest_api.my_api.id
-  triggers    = { # Force a new deployment when any of these hashes change
+  triggers = { # Force a new deployment when any of these hashes change
     redeploy_hash = sha1(jsonencode([
       aws_api_gateway_method.my_api_method.id,
       aws_api_gateway_integration.my_api_integration.id,
