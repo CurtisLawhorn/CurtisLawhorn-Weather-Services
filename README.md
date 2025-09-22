@@ -1,2 +1,2 @@
-# Curtis Lawhorn - Weather Services
+# Curtis Lawhorn Weather Services
 Weather services.
