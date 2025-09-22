@@ -88,8 +88,8 @@ resource "aws_apprunner_vpc_ingress_connection" "my_apprunner_ingress" {
   name        = var.app_runner_ingress_name
   service_arn = aws_apprunner_service.my_apprunner.arn
   ingress_vpc_configuration {
-    vpc_id          = aws_vpc.my_vpc.id
-    vpc_endpoint_id = aws_vpc_endpoint.my_vpc_endpoint.id
+    vpc_id          = var.vpc_id
+    vpc_endpoint_id = var.vpc_endpoint_id
   }
   tags = {
     Name    = var.app_runner_ingress_name
@@ -105,7 +105,7 @@ resource "aws_api_gateway_integration" "my_api_integration" { # Integrate the AN
   type                    = "HTTP_PROXY"
   uri                     = "https://${aws_apprunner_service.my_apprunner.service_url}/{proxy}"
   connection_type         = "VPC_LINK"
-  connection_id           = aws_api_gateway_vpc_link.my_api_vpc_link.id
+  connection_id           = var.api_vpc_link_id
   request_parameters = {
     "integration.request.path.proxy" = "method.request.path.proxy"
   }
@@ -148,6 +148,6 @@ resource "aws_api_gateway_stage" "my_api_stage" {
 resource "aws_api_gateway_base_path_mapping" "my_api_mapping" {
   api_id      = aws_api_gateway_rest_api.my_api.id
   stage_name  = aws_api_gateway_stage.my_api_stage.stage_name
-  domain_name = aws_api_gateway_domain_name.my_api_custom_domain.domain_name
+  domain_name = var.api_domain_name
   base_path   = var.api_gateway_app_runner_base_path
 }

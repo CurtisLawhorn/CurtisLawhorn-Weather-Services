@@ -26,6 +26,21 @@ variable "api_gateway_name" {
   default = "curtislawhorn-weatherservices-api"
 }
 
+variable "api_vpc_link_id" {
+  type    = string
+  default = "ptb6pl"
+}
+
+variable "api_domain_name" {
+  type    = string
+  default = "api.curtislawhorn.com"
+}
+
+variable "api_gateway_app_runner_base_path" {
+  type    = string
+  default = "weather-services"
+}
+
 ###############################################
 # App Runner
 ###############################################
@@ -65,7 +80,12 @@ variable "app_runner_ingress_name" {
   default = "curtislawhorn-weatherservices-ingress"
 }
 
-variable "api_gateway_app_runner_base_path" {
+variable "vpc_id" {
   type    = string
-  default = "weather-services"
+  default = "vpc-0ba992ff6a2a453e6"
+}
+
+variable "vpc_endpoint_id" {
+  type    = string
+  default = "vpce-02d6832ed6e59e967"
 }
