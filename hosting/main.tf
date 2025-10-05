@@ -145,7 +145,7 @@ resource "aws_api_gateway_stage" "my_api_stage" {
   #cache_cluster_enabled = true
   #cache_cluster_size    = "0.5"
   tags = {
-    Name    = var.app_runner_ingress_name
+    Name    = var.api_gateway_stage_name
     Project = var.project_name
   }
 }

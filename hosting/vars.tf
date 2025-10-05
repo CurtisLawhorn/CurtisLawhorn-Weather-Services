@@ -31,6 +31,11 @@ variable "api_gateway_app_runner_base_path" {
   default = "weather-services"
 }
 
+variable "api_gateway_stage_name" {
+  type    = string
+  default = "curtislawhorn-apigw-active
+}
+
 ###############################################
 # App Runner
 ###############################################
