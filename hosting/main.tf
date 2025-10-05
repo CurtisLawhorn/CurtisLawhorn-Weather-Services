@@ -144,6 +144,10 @@ resource "aws_api_gateway_stage" "my_api_stage" {
   deployment_id = aws_api_gateway_deployment.my_api_deployment.id
   #cache_cluster_enabled = true
   #cache_cluster_size    = "0.5"
+  tags = {
+    Name    = var.app_runner_ingress_name
+    Project = var.project_name
+  }
 }
 
 # Custom domain API gateway mapping
