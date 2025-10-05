@@ -82,7 +82,7 @@ resource "aws_apprunner_service" "my_apprunner" {
   }
   tags = {
     Name    = var.app_runner_name
-    AppName = var.application_name
+    Project = var.project_name
   }
 }
 
@@ -95,7 +95,7 @@ resource "aws_apprunner_vpc_ingress_connection" "my_apprunner_ingress" {
   }
   tags = {
     Name    = var.app_runner_ingress_name
-    AppName = var.application_name
+    Project = var.project_name
   }
 }
 
